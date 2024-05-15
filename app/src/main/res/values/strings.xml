@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">Tugela</string>
+
+    <!--    Content Description-->
+    <string name="home_logo">Home Logo</string>
+
+    
+<!--    GET STARTED-->
+    <string name="work_from">Work From</string>
+    <string name="anywhere_anytime">Anywhere.........Anytime</string>
+    <string name="get_started">Get Started</string>
+
+<!--    SignIn-->
+    <string name="sign_in">Sign In</string>
+    <string name="sign_in_guest">Sign in as a guest</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="forget_password">Forget Password</string>
+    <string name="email_hint">Enter your email address</string>
+    <string name="password_hint">Enter your password</string>
+    <string name="already_account">Already have an account?</string>
+    <string name="dont_account">Don\'t have an account?</string>
+    <string name="sign_up_google">Sign up with Google</string>
+    <string name="sign_up_facebook">Sign up with Facebook</string>
+
+<!--    Sign Up-->
+    <string name="sign_up">Sign Up</string>
+    <string name="full_name">Full Name</string>
+    <string name="enter_full_name">Enter your full name</string>
+    <string name="create_account">Create an account</string>
+    
+<!--    Forget Password-->
+    <string name="send_reset_instruction">Send reset instructions</string>
+    <string name="return_signIn">Return to Sign In</string>
+
+<!--    reset Password-->
+    <string name="reset_password">Reset Password</string>
+    <string name="new_pass">New Password</string>
+    <string name="new_pass_hint">Enter your new Password</string>
+    <string name="confirm_pass">Confirm your new Password</string>
+    <string name="confirm_hint_pass">Confirm your new Password</string>
+</resources>
