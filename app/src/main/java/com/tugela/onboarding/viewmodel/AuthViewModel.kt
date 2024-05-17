@@ -1,22 +1,16 @@
 package com.tugela.onboarding.viewmodel
 
 import android.content.Context
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.tugela.data.models.requests.SignInModel
 import com.tugela.onboarding.events.AuthEvent
 import com.tugela.onboarding.state.AuthState.AuthUiState
-import com.tugela.use_cases.authentication.AuthenticationRequestUseCase
+import com.tugela.use_cases.authentication.SignInRequestUseCase
+import com.tugela.use_cases.authentication.SignUpRequestUseCase
 import com.tugela.util.network.DataState
-import com.tugela.util.network.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
-import extensions.BaseViewModel
-import extensions.emitFlowResultsToEvent
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -26,7 +20,8 @@ import javax.inject.Inject
 @HiltViewModel
 class AuthViewModel @Inject constructor(
     @ApplicationContext private val context: Context,
-    private val authenticationRequestUseCase: AuthenticationRequestUseCase
+    private val signInRequestUseCase: SignInRequestUseCase,
+    private val signUpRequestUseCase: SignUpRequestUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableSharedFlow<AuthUiState>()
@@ -36,7 +31,7 @@ class AuthViewModel @Inject constructor(
         when(event) {
             is AuthEvent.signInEvent -> {
                 viewModelScope.launch {
-                    authenticationRequestUseCase.invoke(event.signInModel).onEach{dataState->
+                    signInRequestUseCase.invoke(event.signInModel).onEach{ dataState->
                         when(dataState) {
                             is DataState.Loading -> {
                                 _uiState.emit(AuthUiState.loadingState)
@@ -51,8 +46,24 @@ class AuthViewModel @Inject constructor(
                     }.launchIn(viewModelScope)
                 }
             }
+
+            is AuthEvent.signUpEvent -> {
+                viewModelScope.launch {
+                    signUpRequestUseCase.invoke(event.signUpModel).onEach{ dataState->
+                        when(dataState) {
+                            is DataState.Loading -> {
+                                _uiState.emit(AuthUiState.loadingState)
+                            }
+                            is DataState.Success -> {
+                                _uiState.emit(AuthUiState.successState)
+                            }
+                            is DataState.Error -> {
+                                _uiState.emit(AuthUiState.failedState)
+                            }
+                        }
+                    }.launchIn(viewModelScope)
+                }
+            }
+            }
         }
     }
-
-
-}

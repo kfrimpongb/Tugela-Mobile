@@ -1,7 +1,9 @@
 package com.tugela.use_cases
 
-import com.tugela.use_cases.authentication.AuthenticationRequestUseCase
+import com.tugela.use_cases.authentication.SignInRequestUseCase
+import com.tugela.use_cases.authentication.SignUpRequestUseCase
 
 data class UseCases(
-    val authenticationRequestUseCase: AuthenticationRequestUseCase
+    val signInRequestUseCase: SignInRequestUseCase,
+    val signUpRequestUseCase: SignUpRequestUseCase
 )

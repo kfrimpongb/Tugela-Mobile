@@ -3,7 +3,8 @@ package com.tugela.di
 
 import com.tugela.domain.repository.AuthenticationRepository
 import com.tugela.use_cases.UseCases
-import com.tugela.use_cases.authentication.AuthenticationRequestUseCase
+import com.tugela.use_cases.authentication.SignInRequestUseCase
+import com.tugela.use_cases.authentication.SignUpRequestUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,7 +21,8 @@ object UseCaseModule {
         authRepository: AuthenticationRepository,
     ): UseCases {
         return UseCases(
-            authenticationRequestUseCase = AuthenticationRequestUseCase(authRepository),
+            signInRequestUseCase = SignInRequestUseCase(authRepository),
+            signUpRequestUseCase = SignUpRequestUseCase(authRepository)
         )
     }
 }

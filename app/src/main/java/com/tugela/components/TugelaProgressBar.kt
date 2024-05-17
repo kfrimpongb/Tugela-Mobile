@@ -15,22 +15,12 @@ import androidx.compose.ui.graphics.Color
 @Composable
 fun TugelaProgressBar(isVisible: Boolean) {
     if (isVisible) {
-//        Box(
-//            modifier = Modifier
-//                .fillMaxSize(),
-//            contentAlignment = Alignment.Center
-//        ) {
-//            CircularProgressIndicator()
-//        }
-
-
-    Column(
-        modifier = Modifier.fillMaxSize()
-            .wrapContentWidth(Alignment.CenterHorizontally),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        CircularProgressIndicator()// provided by compose library
-    }
+        Box(
+            modifier = Modifier
+                .fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            CircularProgressIndicator()
+        }
 }
 }
