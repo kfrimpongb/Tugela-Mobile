@@ -24,7 +24,7 @@ fun SetupNavigation(
             navigateToSignUpScreen = navigation.signUp,
             navigateToForgetPinScreen = navigation.forgetPin,
             popToLoginScreen = navigation.popToSignIn,
-            navigateToSelectCustomerType = navigation.selectCustomerType
+            navigateTopProfileSetup = navigation.profileSetup
         )
     }
 

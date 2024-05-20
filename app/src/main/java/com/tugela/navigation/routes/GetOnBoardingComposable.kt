@@ -6,6 +6,7 @@ import com.tugela.onboarding.screens.CreateAccountScreen
 import com.tugela.onboarding.screens.CustomerTypeScreen
 import com.tugela.onboarding.screens.ForgetPasswordScreen
 import com.tugela.onboarding.screens.GetStartedScreen
+import com.tugela.onboarding.screens.ProfileUpdateScreen
 import com.tugela.onboarding.screens.SignInScreen
 import com.tugela.util.Constants
 
@@ -14,7 +15,7 @@ fun NavGraphBuilder.onBoardingComposable(
     navigateToSignUpScreen:() -> Unit,
     navigateToForgetPinScreen:() -> Unit,
     popToLoginScreen: () -> Unit,
-    navigateToSelectCustomerType: () -> Unit
+    navigateTopProfileSetup: () -> Unit,
 )
 {
     composable(
@@ -39,7 +40,7 @@ fun NavGraphBuilder.onBoardingComposable(
     ){
         CreateAccountScreen(
             popToLoginScreen = popToLoginScreen,
-            navigateToSelectCustomerType = navigateToSelectCustomerType
+            navigateToSelectCustomerType = navigateTopProfileSetup
         )
     }
 
@@ -51,8 +52,8 @@ fun NavGraphBuilder.onBoardingComposable(
         )
     }
     composable(
-        route = Constants.CUSTOMER_TYPE,
+        route = Constants.PROFILE_SETUP,
     ){
-        CustomerTypeScreen()
+        ProfileUpdateScreen()
     }
 }

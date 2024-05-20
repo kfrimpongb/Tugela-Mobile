@@ -16,8 +16,8 @@ class NavigationScreens (navController: NavController){
         navController.navigate(Constants.FORGET_PIN)
     }
 
-    val selectCustomerType:() -> Unit = {
-        navController.navigate(Constants.CUSTOMER_TYPE)
+    val profileSetup:() -> Unit = {
+        navController.navigate(Constants.PROFILE_SETUP)
     }
 
     val popToSignIn: ()-> Unit = {

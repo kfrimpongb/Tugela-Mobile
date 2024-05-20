@@ -96,6 +96,9 @@ dependencies {
     //ViewModel
     implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.0-alpha03")
 
+    implementation("io.coil-kt:coil-compose:1.3.2")
+
+
 
 
 

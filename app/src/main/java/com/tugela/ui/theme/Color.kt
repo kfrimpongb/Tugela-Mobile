@@ -13,3 +13,8 @@ val Pink40 = Color(0xFF7D5260)
 val colorAccent = Color(0xFF87BBD0)
 val textFieldBoarderColor = Color(0xFFD5DADF)
 val textFieldTextColor = Color(0xFF667085)
+val dropdownTextColor = Color(0xFF92A0AD)
+val textColor = Color(0xFF344054
+)
+
+

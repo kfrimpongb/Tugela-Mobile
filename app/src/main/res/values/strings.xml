@@ -12,6 +12,7 @@
 
 <!--    SignIn-->
     <string name="sign_in">Sign In</string>
+    <string name="continue_btn">Continue</string>
     <string name="sign_in_guest">Sign in as a guest</string>
     <string name="email">Email</string>
     <string name="password">Password</string>

@@ -81,8 +81,11 @@ fun CreateAccountScreen(
     when (uiState) {
         is AuthUiState.failedState -> {
             Toast.makeText(context, "Authentication Failed", Toast.LENGTH_LONG).show()
+            navigateToSelectCustomerType.invoke()
         }
-        is AuthUiState.successState -> {}
+        is AuthUiState.successState -> {
+            navigateToSelectCustomerType.invoke()
+        }
         else -> {}
     }
     Box(
@@ -127,7 +130,6 @@ fun CreateAccountScreen(
             Spacer(modifier = Modifier.height(26.dp))
             TugelaButton(onClick = {
                 viewModel.onEvent(AuthEvent.signUpEvent(signUpModel))
-//            navigateToSelectCustomerType.invoke()
             }, text = stringResource(id = R.string.create_account) )
 
             Spacer(modifier = Modifier.height(24.dp))

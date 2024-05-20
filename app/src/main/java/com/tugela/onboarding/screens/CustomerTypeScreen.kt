@@ -2,6 +2,7 @@ package com.tugela.onboarding.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -21,7 +22,9 @@ import androidx.compose.ui.unit.dp
 import com.tugela.ui.theme.textFieldBoarderColor
 
 @Composable
-fun CustomerTypeScreen(){
+fun CustomerTypeScreen(
+    navigateToProfileSetup:() -> Unit
+){
         Column(
             verticalArrangement = Arrangement.Center,
             modifier = Modifier
@@ -34,7 +37,11 @@ fun CustomerTypeScreen(){
                     .fillMaxWidth()
                     .height(56.dp)
                     .background(Color.White, shape = RoundedCornerShape(8.dp))
-                    .border(1.dp, textFieldBoarderColor, shape = RoundedCornerShape(8.dp)),
+                    .border(1.dp, textFieldBoarderColor, shape = RoundedCornerShape(8.dp))
+                    .clickable {
+                       navigateToProfileSetup.invoke()
+                    }
+                ,
                 contentAlignment = Alignment.Center
             ) {
                 Text(text = "As a freelancer")
@@ -47,7 +54,10 @@ fun CustomerTypeScreen(){
                     .fillMaxWidth()
                     .height(56.dp)
                     .background(Color.White, shape = RoundedCornerShape(8.dp))
-                    .border(1.dp, textFieldBoarderColor, shape = RoundedCornerShape(8.dp)),
+                    .border(1.dp, textFieldBoarderColor, shape = RoundedCornerShape(8.dp))
+                    .clickable {
+                        navigateToProfileSetup.invoke()
+                    },
                 contentAlignment = Alignment.Center
             ) {
                 Text(text = "As a Client")
@@ -60,5 +70,5 @@ fun CustomerTypeScreen(){
 @Composable
 @Preview
 fun PreviewCustomerTypeScreen(){
-    CustomerTypeScreen()
+    CustomerTypeScreen({})
 }
