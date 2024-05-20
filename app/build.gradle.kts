@@ -99,6 +99,13 @@ dependencies {
     implementation("io.coil-kt:coil-compose:1.3.2")
 
 
+    //Testing
+    testImplementation ("app.cash.turbine:turbine:0.7.0")
+    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
+    testImplementation ("com.willowtreeapps.assertk:assertk:0.26.1")
+
+
+
 
 
 

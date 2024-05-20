@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class SignInModel(
     @SerializedName("email")
-    val enail: String,
+    val email: String,
     @SerializedName("password")
     val password: String
 )

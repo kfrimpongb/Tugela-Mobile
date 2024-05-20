@@ -19,7 +19,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AuthViewModel @Inject constructor(
-    @ApplicationContext private val context: Context,
     private val signInRequestUseCase: SignInRequestUseCase,
     private val signUpRequestUseCase: SignUpRequestUseCase
 ) : ViewModel() {
