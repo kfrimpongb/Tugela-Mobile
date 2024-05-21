@@ -11,6 +11,7 @@ object Constants {
     const val CUSTOMER_TYPE = "customerType"
     const val PROFILE_SETUP = "profileSetup"
     const val FREELANCE_SETUP = "freelanceSetup"
+    const val CLIENT_SETUP = "clientSetup"
 
     const val TASK_SCREEN = "task/{taskId}"
 }

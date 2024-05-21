@@ -3,6 +3,7 @@ package com.tugela.navigation.routes
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import com.tugela.onboarding.screens.ClientProfileSetupScreen
 import com.tugela.onboarding.screens.CreateAccountScreen
 import com.tugela.onboarding.screens.CustomerTypeScreen
 import com.tugela.onboarding.screens.ForgetPasswordScreen
@@ -63,7 +64,7 @@ fun NavGraphBuilder.onBoardingComposable(
         route = Constants.CUSTOMER_TYPE,
     ){
         CustomerTypeScreen(
-            navigateToClientSetup = {},
+            navigateToClientSetup =  navigateToClientSetup,
             navigateToFreelancerSetup = navigateToFreelancerSetup,
             popBackStack = {}
         )
@@ -73,6 +74,12 @@ fun NavGraphBuilder.onBoardingComposable(
         route = Constants.FREELANCE_SETUP,
     ){
         FreelancerProfileSetupScreen()
+    }
+
+    composable(
+        route = Constants.CLIENT_SETUP,
+    ){
+        ClientProfileSetupScreen()
     }
 
     composable(

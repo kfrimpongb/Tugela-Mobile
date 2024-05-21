@@ -28,6 +28,11 @@ class NavigationScreens (navController: NavController){
         navController.navigate(Constants.FREELANCE_SETUP)
     }
 
+    val clientSetup:() -> Unit = {
+        navController.navigate(Constants.CLIENT_SETUP)
+    }
+
+
     val popToSignIn: ()-> Unit = {
         navController.popBackStack()
     }

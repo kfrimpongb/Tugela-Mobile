@@ -27,7 +27,7 @@ fun SetupNavigation(
             popToLoginScreen = navigation.popToSignIn,
             navigateToCustomerType = navigation.customerType,
             navigateToFreelancerSetup = navigation.freelanceSetup,
-            navigateToClientSetup = {},
+            navigateToClientSetup = navigation.clientSetup,
             navigateTopProfileSetup = {}
         )
     }

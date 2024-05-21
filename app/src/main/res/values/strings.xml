@@ -48,6 +48,14 @@
     <string name="job_industry">Job Industry</string>
     <string name="enter_job_industry">Enter Job Industry</string>
 
+
+    <!--    freelancer setup profile-->
+    <string name="company">Company</string>
+    <string name="enter_company">Enter your company name</string>
+
+
+
+
     <string name="city">City</string>
     <string name="enter_city">Enter your city</string>
     <string name="timezone">Timezone</string>
