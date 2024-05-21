@@ -20,11 +20,15 @@ fun SetupNavigation(
         startDestination =  Constants.GET_STARTED_SCREEN
     ){
         onBoardingComposable(
+            navigationController = navController,
             navigateToLoginScreen = navigation.signIn,
             navigateToSignUpScreen = navigation.signUp,
             navigateToForgetPinScreen = navigation.forgetPin,
             popToLoginScreen = navigation.popToSignIn,
-            navigateTopProfileSetup = navigation.profileSetup
+            navigateToCustomerType = navigation.customerType,
+            navigateToFreelancerSetup = navigation.freelanceSetup,
+            navigateToClientSetup = {},
+            navigateTopProfileSetup = {}
         )
     }
 

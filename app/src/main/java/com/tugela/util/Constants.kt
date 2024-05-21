@@ -10,6 +10,7 @@ object Constants {
     const val FORGET_PIN = "forgetPin"
     const val CUSTOMER_TYPE = "customerType"
     const val PROFILE_SETUP = "profileSetup"
+    const val FREELANCE_SETUP = "freelanceSetup"
 
     const val TASK_SCREEN = "task/{taskId}"
 }

@@ -40,4 +40,17 @@
     <string name="new_pass_hint">Enter your new Password</string>
     <string name="confirm_pass">Confirm your new Password</string>
     <string name="confirm_hint_pass">Confirm your new Password</string>
+
+    <!--    freelancer setup profile-->
+    <string name="role">Role</string>
+    <string name="enter_role">Enter your current job role</string>
+    <string name="country">Country</string>
+    <string name="job_industry">Job Industry</string>
+    <string name="enter_job_industry">Enter Job Industry</string>
+
+    <string name="city">City</string>
+    <string name="enter_city">Enter your city</string>
+    <string name="timezone">Timezone</string>
+    <string name="enter_imezone">Select Timezone</string>
+
 </resources>

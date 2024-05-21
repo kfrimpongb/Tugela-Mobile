@@ -61,6 +61,7 @@ class AuthViewModelTest {
             advanceUntilIdle()
 
             assertThat(awaitItem()).isEqualTo(AuthUiState.loadingState)
+            assertThat(awaitItem()).isEqualTo(AuthUiState.failedState)
             assertThat(awaitItem()).isEqualTo(AuthUiState.successState)
         }
     }

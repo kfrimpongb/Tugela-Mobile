@@ -20,6 +20,14 @@ class NavigationScreens (navController: NavController){
         navController.navigate(Constants.PROFILE_SETUP)
     }
 
+    val customerType:() -> Unit = {
+        navController.navigate(Constants.CUSTOMER_TYPE)
+    }
+
+    val freelanceSetup:() -> Unit = {
+        navController.navigate(Constants.FREELANCE_SETUP)
+    }
+
     val popToSignIn: ()-> Unit = {
         navController.popBackStack()
     }
