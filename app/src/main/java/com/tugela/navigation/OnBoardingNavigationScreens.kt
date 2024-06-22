@@ -3,7 +3,7 @@ package com.tugela.navigation
 import androidx.navigation.NavController
 import com.tugela.util.Constants
 
-class NavigationScreens (navController: NavController){
+class OnBoardingNavigationScreens (navController: NavController){
     val signIn:() -> Unit = {
         navController.navigate(Constants.SIGN_IN_SCREEN)
     }
@@ -21,7 +21,7 @@ class NavigationScreens (navController: NavController){
     }
 
     val customerType:() -> Unit = {
-        navController.navigate(Constants.CUSTOMER_TYPE)
+        navController.navigate(Constants.CUSTOMER_TYPE_SCREEN)
     }
 
     val freelanceSetup:() -> Unit = {
@@ -32,6 +32,9 @@ class NavigationScreens (navController: NavController){
         navController.navigate(Constants.CLIENT_SETUP)
     }
 
+    val mainScreen:() -> Unit = {
+        navController.navigate(Constants.MAIN_SCREEN)
+    }
 
     val popToSignIn: ()-> Unit = {
         navController.popBackStack()

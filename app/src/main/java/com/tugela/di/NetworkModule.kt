@@ -2,6 +2,7 @@ package com.tugela.di
 
 import com.localebro.okhttpprofiler.OkHttpProfilerInterceptor
 import com.tugela.data.remote.TugelaApi
+import com.tugela.data.remote.interceptors.AuthenticationInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,7 +24,7 @@ object NetworkModule {
     @Named("tugela")
     fun provideRetrofit(@Named("tugelaClient")okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://www.afamobile.net/afa-web-backend/services/")
+            .baseUrl("http://192.168.8.100:8081/") // Use the IP address of your server
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()
@@ -39,10 +40,13 @@ object NetworkModule {
     @Singleton
     @Provides
     @Named("tugelaClient")
-    fun provideOkHttp() : OkHttpClient{
+    fun provideOkHttp(
+        authenticationInterceptor: AuthenticationInterceptor
+    ) : OkHttpClient{
         return OkHttpClient.Builder()
             .addInterceptor(HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY })
             .addInterceptor (OkHttpProfilerInterceptor())
+            .addInterceptor(authenticationInterceptor)
             .connectTimeout(60, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
             .writeTimeout(60, TimeUnit.SECONDS)

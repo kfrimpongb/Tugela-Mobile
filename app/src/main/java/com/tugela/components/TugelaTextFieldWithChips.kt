@@ -84,26 +84,30 @@ fun TugelaTextFieldWithChips(
             )
         }
         Spacer(modifier = Modifier.height(8.dp))
-        ChipGroup(chips = chips) { chipToRemove ->
-            chips = chips.filter { it != chipToRemove }
-        }
+        ChipGroupLocal(chips = chips, onRemoveChip = { chipText ->
+            chips = chips.filter { it != chipText }
+        }, showRemove = true)
     }
 }
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun ChipGroup(chips: List<String>, onRemoveChip: (String) -> Unit) {
+fun ChipGroupLocal(chips: List<String>, onRemoveChip: (String) -> Unit, showRemove: Boolean = true) {
     FlowRow(
         modifier = Modifier.fillMaxWidth()
     ) {
         chips.forEach { chipText ->
-            Chip(text = chipText, onRemove = { onRemoveChip(chipText) })
+            Chip(
+                text = chipText,
+                onRemove = { onRemoveChip(chipText) },
+                showRemove = showRemove
+            )
         }
     }
 }
 
 @Composable
-fun Chip(text: String, onRemove: () -> Unit) {
+fun Chip(text: String, onRemove: (() -> Unit)? = null, showRemove: Boolean = false) {
     Box(
         modifier = Modifier
             .wrapContentWidth()
@@ -123,22 +127,27 @@ fun Chip(text: String, onRemove: () -> Unit) {
                 fontWeight = FontWeight.Medium
             )
             Spacer(modifier = Modifier.width(4.dp))
-            IconButton(
-                onClick = onRemove,
-                modifier = Modifier.size(16.dp)
-            ) {
-                Icon(
-                    imageVector = Icons.Outlined.Close,
-                    contentDescription = "Remove chip",
-                    tint = Color.White
-                )
+            if (showRemove) {
+                IconButton(
+                    onClick = {
+                        if (onRemove != null) {
+                            onRemove()
+                        }
+                    },
+                    modifier = Modifier.size(16.dp)
+                ) {
+                    Icon(
+                        imageVector = Icons.Outlined.Close,
+                        contentDescription = "Remove chip",
+                        tint = Color.White
+                    )
+                }
             }
         }
     }
 }
-
 @Composable
 @Preview
-fun previewTugelaTextFieldWithChips() {
-    TugelaTextFieldWithChips("Email", "Enter your email address", {})
+fun PreviewTugelaTextFieldWithChips() {
+    TugelaTextFieldWithChips("Email", "Enter your email address") {}
 }

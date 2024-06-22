@@ -33,7 +33,6 @@ fun <T> makeNetworkRequest(dispatcher: CoroutineDispatcher = Dispatchers.IO,
 
             try {
                 val apiResponse = gson.fromJson(body?.charStream(), ApiResponse::class.java)
-
                 Timber.tag("requestException").d("errorCode : $code")
                 Timber.tag("requestException").e("Timber: ${request.javaClass.enclosingMethod?.name} --> ${e.javaClass} \n --> $apiResponse")
             } catch (e: Exception) {

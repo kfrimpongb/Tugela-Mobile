@@ -14,7 +14,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Lock
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -41,6 +40,7 @@ import com.tugela.components.TugelaProgressBar
 import com.tugela.components.TugelaSignInOptionText
 import com.tugela.components.TugelaTextField
 import com.tugela.components.TugelaTopLogoView
+import com.tugela.data.local.PreferencesKeys
 import com.tugela.data.models.requests.SignInModel
 import com.tugela.onboarding.events.AuthEvent
 import com.tugela.onboarding.state.AuthState.AuthUiState
@@ -49,8 +49,11 @@ import com.tugela.onboarding.viewmodel.AuthViewModel
 
 @Composable
 fun SignInScreen(
-    navigateToSignIn: () -> Unit,
+    navigateToSignUp: () -> Unit,
     navigateToForgetScreen: () -> Unit,
+    navigateToClientSetup:() -> Unit,
+    navigateToFreelancerSetup:() -> Unit,
+    navigateToMainScreen: () -> Unit,
     viewModel: AuthViewModel = hiltViewModel()
 ) {
     var email by remember { mutableStateOf("") }
@@ -62,6 +65,8 @@ fun SignInScreen(
 
     val isProgressBarVisible = when (uiState) {
         is AuthUiState.loadingState -> true
+        is AuthUiState.successState -> false
+        is AuthUiState.failedState -> false
         else -> false
     }
 
@@ -69,7 +74,23 @@ fun SignInScreen(
         is AuthUiState.failedState -> {
             Toast.makeText(context, "Authentication Failed", Toast.LENGTH_LONG).show()
         }
-        is AuthUiState.successState -> {}
+        is AuthUiState.successState -> {
+            viewModel.saveDataStoreValue(PreferencesKeys.EMAIL, email)
+            viewModel.saveDataStoreBooleanValue(PreferencesKeys.IS_SIGNED_IN, true)
+            val isProfileComplete = (uiState as AuthUiState.successState).isProfileComplete
+            val customerType = (uiState as AuthUiState.successState).userType
+            Toast.makeText(LocalContext.current, isProfileComplete.toString(), Toast.LENGTH_LONG).show()
+            if (isProfileComplete){
+                navigateToMainScreen.invoke()
+            } else {
+
+                if (customerType == "client"){
+                    navigateToClientSetup.invoke()
+                } else {
+                    navigateToFreelancerSetup.invoke()
+                }
+            }
+        }
         else -> {}
     }
 
@@ -106,6 +127,8 @@ fun SignInScreen(
             }
 
             Spacer(modifier = Modifier.height(16.dp))
+
+            Spacer(modifier = Modifier.height(16.dp))
             TugelaTextField(
                 stringResource(id = R.string.password),
                 stringResource(id = R.string.password_hint),
@@ -118,7 +141,7 @@ fun SignInScreen(
             Spacer(modifier = Modifier.height(26.dp))
             TugelaButton(
                 onClick = {
-                    viewModel.onEvent(AuthEvent.signInEvent(signInModel))
+                    viewModel.onEvent(AuthEvent.SignInEvent(signInModel))
                 },
                 text = stringResource(id = R.string.sign_in)
             )
@@ -128,7 +151,7 @@ fun SignInScreen(
                 leadingText = stringResource(id = R.string.dont_account),
                 trailingText = stringResource(id = R.string.sign_up),
                 endText = stringResource(id = R.string.forget_password),
-                onClickLeadingText = navigateToSignIn,
+                onClickLeadingText = navigateToSignUp,
                 onClickTrailingText = navigateToForgetScreen
             )
 

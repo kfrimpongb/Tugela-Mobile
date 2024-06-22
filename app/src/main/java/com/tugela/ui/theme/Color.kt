@@ -14,7 +14,10 @@ val colorAccent = Color(0xFF87BBD0)
 val textFieldBoarderColor = Color(0xFFD5DADF)
 val textFieldTextColor = Color(0xFF667085)
 val dropdownTextColor = Color(0xFF92A0AD)
-val textColor = Color(0xFF344054
-)
+val textColor = Color(0xFF344054)
+val pagerColor = Color(0xFF87BBD0)
+val backgroundColor = Color(0xFF8F8F8)
+val layoutBackground = Color(0xFFF8F8F8)
+
 
 

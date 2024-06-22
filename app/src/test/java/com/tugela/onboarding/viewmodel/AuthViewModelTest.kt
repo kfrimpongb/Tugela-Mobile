@@ -9,18 +9,15 @@ import com.tugela.onboarding.events.AuthEvent
 import com.tugela.onboarding.state.AuthState.AuthUiState
 import com.tugela.use_cases.authentication.SignInRequestUseCase
 import com.tugela.use_cases.authentication.SignUpRequestUseCase
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.resetMain
-import kotlinx.coroutines.test.runCurrent
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -55,7 +52,7 @@ class AuthViewModelTest {
         val signInModel = SignInModel(password  = "1234", email = "kenannan005@gmail.com")
 
         authViewModel.uiState.test {
-            authViewModel.onEvent(AuthEvent.signInEvent(signInModel))
+            authViewModel.onEvent(AuthEvent.SignInEvent(signInModel))
 
             // Advance the virtual clock until all tasks are completed
             advanceUntilIdle()
@@ -72,7 +69,7 @@ class AuthViewModelTest {
         val signInModel = SignInModel(password  = "65456", email = "kenannan005@gmail.com")
 
         authViewModel.uiState.test {
-            authViewModel.onEvent(AuthEvent.signInEvent(signInModel))
+            authViewModel.onEvent(AuthEvent.SignInEvent(signInModel))
             advanceUntilIdle()
 
             assertThat(awaitItem()).isEqualTo(AuthUiState.loadingState)

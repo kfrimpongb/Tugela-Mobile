@@ -1,7 +1,5 @@
 package com.tugela.components
 
-import android.graphics.Color
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,13 +7,11 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.Icon
@@ -34,26 +30,25 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tugela.ui.theme.colorAccent
 import com.tugela.ui.theme.dropdownTextColor
 import com.tugela.ui.theme.textColor
-import com.tugela.ui.theme.textFieldTextColor
 
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
 fun ExposedDropdownMenuBoxSample(
     title: String,
-    options: List<String>
+    options: List<String>,
+    onItemSelected: (String) -> Unit // Callback to get selected item
+
 ) {
     var expanded by remember { mutableStateOf(false) }
     var selectedText by remember { mutableStateOf("") }
     val icon = if (expanded) Icons.Filled.ArrowDropDown else Icons.Filled.ArrowDropDown
-    val optionss = listOf("Option 1", "Option 2", "Option 3")
     val keyboardController = LocalSoftwareKeyboardController.current
     keyboardController?.hide()
 
@@ -108,6 +103,7 @@ fun ExposedDropdownMenuBoxSample(
                         onItemClick = {
                             selectedText = selectionOption
                             expanded = false
+                            onItemSelected(selectionOption) // Callback to parent
                         }
                     )
                 }
@@ -125,7 +121,6 @@ fun CustomDropdownItem(
         modifier = Modifier
             .fillMaxSize()
             .clickable(onClick = onItemClick)
-            .background(androidx.compose.ui.graphics.Color.White,shape = RoundedCornerShape(4.dp))
 
     ) {
         Text(
@@ -139,6 +134,8 @@ fun CustomDropdownItem(
 @Composable
 fun ExposedDropdownMenuBoxSamplePreview() {
     MaterialTheme {
-        ExposedDropdownMenuBoxSample("Select User Type",listOf("Freelancer, Client"))
+        ExposedDropdownMenuBoxSample("Select User Type",listOf("Freelancer, Client")){
+
+        }
     }
 }

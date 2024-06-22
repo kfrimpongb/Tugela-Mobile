@@ -1,8 +1,11 @@
 package com.tugela.navigation.routes
 
-import androidx.navigation.NavController
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.tugela.onboarding.screens.ClientProfileSetupScreen
 import com.tugela.onboarding.screens.CreateAccountScreen
 import com.tugela.onboarding.screens.CustomerTypeScreen
@@ -11,18 +14,22 @@ import com.tugela.onboarding.screens.FreelancerProfileSetupScreen
 import com.tugela.onboarding.screens.GetStartedScreen
 import com.tugela.onboarding.screens.ProfileUpdateScreen
 import com.tugela.onboarding.screens.SignInScreen
+import com.tugela.onboarding.screens.home.MainScreen
+import com.tugela.onboarding.viewmodel.AuthViewModel
 import com.tugela.util.Constants
 
 fun NavGraphBuilder.onBoardingComposable(
-    navigationController: NavController,
+    navigationHostController: NavHostController,
     navigateToLoginScreen: () -> Unit,
     navigateToSignUpScreen:() -> Unit,
+
     navigateToForgetPinScreen:() -> Unit,
     popToLoginScreen: () -> Unit,
     navigateToCustomerType: () -> Unit,
     navigateToFreelancerSetup: () -> Unit,
     navigateToClientSetup: () -> Unit,
     navigateTopProfileSetup: () -> Unit,
+    navigateToMainScreen: () -> Unit,
 )
 {
     composable(
@@ -37,17 +44,24 @@ fun NavGraphBuilder.onBoardingComposable(
         route = Constants.SIGN_IN_SCREEN,
     ){
         SignInScreen(
-            navigateToSignIn = navigateToSignUpScreen,
-            navigateToForgetScreen = navigateToForgetPinScreen
+            navigateToSignUp = navigateToCustomerType,
+            navigateToForgetScreen = navigateToForgetPinScreen,
+            navigateToClientSetup = navigateToClientSetup,
+            navigateToFreelancerSetup = navigateToFreelancerSetup,
+            navigateToMainScreen = navigateToMainScreen
         )
     }
 
     composable(
         route = Constants.SIGN_UP,
+        arguments = listOf(navArgument("customerType") { type = NavType.StringType })
+
     ){
+
         CreateAccountScreen(
             popToLoginScreen = popToLoginScreen,
-            navigateToSelectCustomerType = navigateToCustomerType
+                    navigateToClientSetup,
+            navigateToFreelancerSetup
         )
     }
 
@@ -61,11 +75,11 @@ fun NavGraphBuilder.onBoardingComposable(
     }
 
     composable(
-        route = Constants.CUSTOMER_TYPE,
+        route = Constants.CUSTOMER_TYPE_SCREEN,
     ){
         CustomerTypeScreen(
-            navigateToClientSetup =  navigateToClientSetup,
-            navigateToFreelancerSetup = navigateToFreelancerSetup,
+            navigateToClientSetup =  navigateToSignUpScreen,
+            navigateToFreelancerSetup = navigateToSignUpScreen,
             popBackStack = {}
         )
     }
@@ -73,18 +87,24 @@ fun NavGraphBuilder.onBoardingComposable(
     composable(
         route = Constants.FREELANCE_SETUP,
     ){
-        FreelancerProfileSetupScreen()
+        FreelancerProfileSetupScreen(navigateToMainScreen)
     }
 
     composable(
         route = Constants.CLIENT_SETUP,
     ){
-        ClientProfileSetupScreen()
+        ClientProfileSetupScreen(navigateToMainScreen)
     }
 
     composable(
         route = Constants.PROFILE_SETUP,
     ){
         ProfileUpdateScreen()
+    }
+
+    composable(
+        route = Constants.MAIN_SCREEN
+    ){
+        MainScreen()
     }
 }

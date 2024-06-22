@@ -16,15 +16,19 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 import com.tugela.R
 import com.tugela.components.ExposedDropdownMenuBoxSample
 import com.tugela.components.TugelaBack
 import com.tugela.components.TugelaButton
 import com.tugela.components.TugelaProfileImageEdit
+import com.tugela.onboarding.viewmodel.AuthViewModel
 
 @Composable
-fun ProfileUpdateScreen(){
+fun ProfileUpdateScreen(
+    authViewModel: AuthViewModel = hiltViewModel()
+){
     val navController = rememberNavController()
 
 
@@ -59,7 +63,9 @@ fun ProfileUpdateScreen(){
 
 
         Spacer(Modifier.height(52.dp))
-        ExposedDropdownMenuBoxSample("Select User Type", listOf("Freelancer", "Client"))
+        ExposedDropdownMenuBoxSample("Select User Type", listOf("Freelancer", "Client")){
+
+        }
 
         Spacer(modifier = Modifier.weight(1f)) // Push the button to the bottom
 
