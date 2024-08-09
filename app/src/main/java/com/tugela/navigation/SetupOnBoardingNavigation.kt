@@ -39,7 +39,7 @@ fun SetupOnBoardingNavigation(
 
         NavHost(
             navController = navController,
-            startDestination =  Constants.MAIN_SCREEN
+            startDestination =  startDestination
         ) {
             // Your composable destinations
             onBoardingComposable(

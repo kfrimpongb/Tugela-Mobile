@@ -42,9 +42,9 @@ fun DrawerContent(navigateToProfileScreen: () -> Unit) {
     ) {
         // User profile
         Row(verticalAlignment = Alignment.CenterVertically) {
-            TugelaProfileImage("https://avatars.githubusercontent.com/u/52282400?v=4", {
+            TugelaProfileImage("https://avatars.githubusercontent.com/u/52282400?v=4") {
                 navigateToProfileScreen.invoke()
-            })
+            }
             Spacer(modifier = Modifier.width(16.dp))
             Column {
                 Text(text = "Kwame Frimpong", fontWeight = FontWeight.Bold)
