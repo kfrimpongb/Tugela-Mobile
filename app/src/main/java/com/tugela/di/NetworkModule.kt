@@ -24,7 +24,7 @@ object NetworkModule {
     @Named("tugela")
     fun provideRetrofit(@Named("tugelaClient")okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("http://192.168.8.100:8081/") // Use the IP address of your server
+            .baseUrl("http://192.168.156.255:8081/") // Use the IP address of your server
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()
